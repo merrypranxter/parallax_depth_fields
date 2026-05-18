@@ -1,0 +1,53 @@
+{
+  "name": "parallax_depth_fields",
+  "version": "1.0.0",
+  "description": "Multi-plane depth composition with chromatic aberration, HUD overlays, and optical parallax",
+  "category": "optics/depth",
+  "tags": ["parallax", "depth", "chromatic", "HUD", "optics", "terminator", "layered", "3D", "anamorphic"],
+  "primary_concepts": [
+    "Chromatic parallax per depth plane",
+    "Multi-plane depth slicing",
+    "HUD overlay logic",
+    "Anamorphic depth distortion",
+    "Depth-to-blur transfer functions"
+  ],
+  "blend_suggestions": [
+    "chromatic_dispersion",
+    "holography",
+    "dream_physics",
+    "glitchcore_style",
+    "sacred_geometry",
+    "ufo"
+  ],
+  "code_templates": [
+    "code/basic_parallax.glsl",
+    "code/depth_map_parallax.glsl",
+    "code/hud_reticle.glsl",
+    "code/paradoxical_depth.glsl",
+    "code/emotional_depth.glsl"
+  ],
+  "parameter_space": {
+    "numDepthPlanes": {"type": "int", "range": [2, 12], "default": 5},
+    "focalDepth": {"type": "float", "range": [0.0, 1.0], "default": 0.5},
+    "chromaticIntensity": {"type": "float", "range": [0.0, 2.0], "default": 0.8},
+    "parallaxStrength": {"type": "float", "range": [0.0, 0.5], "default": 0.1},
+    "maxBlur": {"type": "float", "range": [0.0, 50.0], "default": 10.0},
+    "depthFalloff": {"type": "enum", "options": ["linear", "quadratic", "exponential"], "default": "quadratic"},
+    "hudOpacity": {"type": "float", "range": [0.0, 1.0], "default": 0.6},
+    "glitchAmount": {"type": "float", "range": [0.0, 1.0], "default": 0.0},
+    "timeScale": {"type": "float", "range": [0.0, 5.0], "default": 1.0},
+    "colorMode": {"type": "enum", "options": ["rgb", "cmy", "thermal", "infrared", "synthetic"], "default": "rgb"}
+  },
+  "artistic_keywords": [
+    "Terminator HUD",
+    "machine vision",
+    "chromatic aberration",
+    "depth layers",
+    "optical",
+    "targeting",
+    "anamorphic",
+    "reticle",
+    "data overlay",
+    "synthetic sight"
+  ]
+}
