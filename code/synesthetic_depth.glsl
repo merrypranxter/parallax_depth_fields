@@ -21,7 +21,16 @@ const float TIME_SCALE          = 1.0;
 
 // Pitch mapping: plane index → spatial frequency (cycles/frame)
 // Matches a just-intonation C major chord: 1, 5/4, 3/2, 2, 5/2, 3, 4
-const float PITCH_RATIOS[7] = float[7](1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 4.0);
+// (Written as a lookup function for GLSL ES 1.0 / WebGL 1 compatibility)
+float pitchRatio(int idx) {
+    if (idx == 0) return 1.00;
+    if (idx == 1) return 1.25;
+    if (idx == 2) return 1.50;
+    if (idx == 3) return 2.00;
+    if (idx == 4) return 2.50;
+    if (idx == 5) return 3.00;
+    return 4.00;  // idx == 6
+}
 
 // Tempo: how fast each plane "breathes" (Hz equivalent)
 const float BASE_TEMPO = 0.8;   // Slowest breath per second
@@ -63,7 +72,7 @@ vec3 noteColor(int noteIdx) {
 // Each plane vibrates at its pitch frequency — spatial Moiré and temporal pulsing
 
 vec3 planeContent(vec2 uv, int planeIdx, float depth, float time) {
-    float pitch   = PITCH_RATIOS[clamp(planeIdx, 0, 6)];
+    float pitch   = pitchRatio(clamp(planeIdx, 0, 6));
     float tempo   = BASE_TEMPO * pitch;   // Higher note = faster beat
 
     // Spatial frequency: higher pitch = finer pattern
@@ -96,9 +105,9 @@ vec3 planeChromatic(vec2 uv, int planeIdx, float depth, float time) {
     float disp = (depth - 0.5) * PARALLAX_STRENGTH * CHROMATIC_INTENSITY;
 
     vec3 col;
-    col.r = planeContent(uv + vec2(disp * 1.2,  0.0 ),        planeIdx, depth, time);
-    col.g = planeContent(uv + vec2(disp * 0.4,  0.0 ),        planeIdx, depth, time);
-    col.b = planeContent(uv + vec2(disp * -0.9, disp * 0.1),  planeIdx, depth, time);
+    col.r = planeContent(uv + vec2(disp * 1.2,  0.0 ),        planeIdx, depth, time).r;
+    col.g = planeContent(uv + vec2(disp * 0.4,  0.0 ),        planeIdx, depth, time).g;
+    col.b = planeContent(uv + vec2(disp * -0.9, disp * 0.1),  planeIdx, depth, time).b;
 
     return col;
 }
@@ -115,7 +124,7 @@ float resonanceWeight(int planeIdx, float focalNote, float time) {
     float weight = exp(-dist * dist * q * q * 4.0);
 
     // Beating: when two notes are close, they interfere and create amplitude modulation
-    float beatFreq = abs(PITCH_RATIOS[planeIdx] - PITCH_RATIOS[int(clamp(focalNote * float(NUM_PLANES - 1), 0.0, float(NUM_PLANES - 1)))]);
+    float beatFreq = abs(pitchRatio(planeIdx) - pitchRatio(int(clamp(focalNote * float(NUM_PLANES - 1), 0.0, float(NUM_PLANES - 1)))));
     float beating  = cos(time * beatFreq * BASE_TEMPO * 3.14159) * 0.15 + 0.85;
 
     return weight * beating;
