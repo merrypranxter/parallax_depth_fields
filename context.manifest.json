@@ -3,13 +3,19 @@
   "version": "1.0.0",
   "description": "Multi-plane depth composition with chromatic aberration, HUD overlays, and optical parallax",
   "category": "optics/depth",
-  "tags": ["parallax", "depth", "chromatic", "HUD", "optics", "terminator", "layered", "3D", "anamorphic"],
+  "tags": ["parallax", "depth", "chromatic", "HUD", "optics", "terminator", "layered", "3D", "anamorphic", "quantum", "synesthetic", "thermal", "biological", "temporal", "ufo", "glitch"],
   "primary_concepts": [
     "Chromatic parallax per depth plane",
     "Multi-plane depth slicing",
     "HUD overlay logic",
     "Anamorphic depth distortion",
-    "Depth-to-blur transfer functions"
+    "Depth-to-blur transfer functions",
+    "Quantum superposition / wave-function collapse",
+    "Synesthetic depth (depth as pitch/frequency)",
+    "Thermal false-color depth (FLIR/Predator)",
+    "Biological parallax (predator vs prey eye modes)",
+    "Temporal depth (time as spatial axis)",
+    "Corrupted depth buffer (glitch aesthetics)"
   ],
   "blend_suggestions": [
     "chromatic_dispersion",
@@ -24,7 +30,23 @@
     "code/depth_map_parallax.glsl",
     "code/hud_reticle.glsl",
     "code/paradoxical_depth.glsl",
-    "code/emotional_depth.glsl"
+    "code/emotional_depth.glsl",
+    "code/quantum_depth.glsl",
+    "code/synesthetic_depth.glsl",
+    "code/thermal_depth.glsl",
+    "code/anamorphic_depth.glsl",
+    "code/biological_parallax.glsl",
+    "code/ufo_temporal.glsl",
+    "code/apocalyptic_hud.glsl"
+  ],
+  "documentation": [
+    "docs/optics_basics.md",
+    "docs/color_theory.md",
+    "docs/artistic_directions.md",
+    "docs/shader_reference.md",
+    "docs/implementation_guide.md",
+    "docs/depth_map_creation.md",
+    "docs/animation_techniques.md"
   ],
   "parameter_space": {
     "numDepthPlanes": {"type": "int", "range": [2, 12], "default": 5},
@@ -48,6 +70,22 @@
     "anamorphic",
     "reticle",
     "data overlay",
-    "synthetic sight"
+    "synthetic sight",
+    "quantum uncertainty",
+    "wave function",
+    "synesthesia",
+    "Scriabin color organ",
+    "FLIR thermal",
+    "Predator vision",
+    "binocular depth",
+    "panoramic prey vision",
+    "temporal parallax",
+    "UFO abduction aesthetic",
+    "corrupted HUD",
+    "glitch depth",
+    "Z-fighting",
+    "adrenaline chromatic",
+    "emotional depth map",
+    "memory as depth"
   ]
 }
